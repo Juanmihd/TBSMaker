@@ -5,6 +5,7 @@
 // Main objective: create data structures for the game and resolve a turn of the game.
 
 #include "stdio.h"
+#include "TBSGame.h"
 
 int main(int argc, char** argv)
 {

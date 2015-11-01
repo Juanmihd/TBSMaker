@@ -13,6 +13,11 @@
   <ItemGroup>
     <ClCompile Include="source\main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="header\TBSGame.h" />
+    <ClInclude Include="header\TBSMap.h" />
+    <ClInclude Include="header\TBSPlayer.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{56B60305-C491-4E3A-B93F-A400576E1889}</ProjectGuid>
     <RootNamespace>TBSMaker</RootNamespace>
@@ -59,6 +64,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\MyProjects\TBSMaker\TBSMaker\header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
