@@ -43,16 +43,23 @@ class TBSMap{
   // TEMPORARY still using text based version, so no image needed
   // image variable
 
-  // @brief This functions get a pointer to a location from the short name
-  // @param location String with the abreviation of the location
-  std::shared_ptr < TBSLocation > get_location(std::string location_name){
-    auto location_id = location_ids_.find(location_name);
-    
-    std::shared_ptr < TBSLocation > location_ptr = nullptr;
-    if (location_id != location_ids_.end()){
-      return locations_[location_id->second];
-    }
-    return nullptr;
+  
+public:
+
+  TBSMap();
+
+
+  // @brief This function reserves the number of locations we are going to use
+  void InitNumLocations(int num_locations){
+    locations_.reserve(num_locations);
   }
+
+  // @brief This functions get a pointer to a location from the short name
+  // @param location_name String with the abreviation of the location
+  // @return If the location exist, will return a pointer to the location with location_name as name
+  //         if it doesn´t exist will return nullptr
+  std::shared_ptr < TBSLocation > get_location(std::string location_name);
+
+
 
 };

@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="TBSMap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\TBSGame.h" />
