@@ -22,7 +22,7 @@ class TBSLocation{
   std::string short_name_;
 
   // Hash table of connected locations
-  std::unordered_map < std::string, std::weak_ptr< TBSLocation > > links_;
+  std::unordered_map < std::string, std::shared_ptr< TBSLocation > > links_;
 
   // Type of the location
   TBSLocationType type_;
@@ -45,8 +45,14 @@ class TBSMap{
 
   // @brief This functions get a pointer to a location from the short name
   // @param location String with the abreviation of the location
-  std::weak_ptr < TBSLocation > get_location(std::string location_name){
-    return location_ids_.count(location_name) <= 0 ? nullptr : locations_[location_ids_[location_name]];
+  std::shared_ptr < TBSLocation > get_location(std::string location_name){
+    auto location_id = location_ids_.find(location_name);
+    
+    std::shared_ptr < TBSLocation > location_ptr = nullptr;
+    if (location_id != location_ids_.end()){
+      return locations_[location_id->second];
+    }
+    return nullptr;
   }
 
 };
