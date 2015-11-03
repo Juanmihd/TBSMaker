@@ -6,8 +6,8 @@
 #include <memory>
 
 //TEMPORARY
-#include <string>
-#include <unordered_map>
+#include <string> //I want to use "atoms" instead of strings
+#include <unordered_map> // I want to use sparse_hash instead of unordered_map
 
 // @brief Contains all the info for a location of the game
 class TBSLocation{
