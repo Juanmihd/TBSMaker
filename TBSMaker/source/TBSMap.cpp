@@ -24,7 +24,7 @@ std::string TBSLocation::ToString(){
   for (auto link : links_){
     long_string.append(link.second->get_long_name());
     long_string.append(" (");
-    long_string.append(link.second->get_short_name());
+    long_string.append(link.first);
     long_string.append("), ");
   }
 }
@@ -34,13 +34,29 @@ std::string TBSLocation::ToString(){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // TBSMap functions
 
+void TBSMap::InitNumLocations(int num_locations){
+  locations_.reserve(num_locations); 
+}
 
-std::shared_ptr < TBSLocation > TBSMap::get_location(std::string location_name){
+void TBSMap::InsertLocation(std::shared_ptr<TBSLocation> new_location){
+  locations_.push_back(new_location);
+}
+
+std::shared_ptr < TBSLocation > TBSMap::GetLocation(std::string location_name){
+  std::shared_ptr < TBSLocation > location_ptr = nullptr; 
+  
   auto location_id = location_ids_.find(location_name);
-
-  std::shared_ptr < TBSLocation > location_ptr = nullptr;
+  
   if (location_id != location_ids_.end()){
-    return locations_[location_id->second];
+    location_ptr = locations_[location_id->second];
   }
-  return nullptr;
+  return location_ptr;
+}
+
+std::shared_ptr < TBSLocation > TBSMap::GetLocation(int id){
+  std::shared_ptr < TBSLocation > location_ptr = nullptr;
+  if (id > 0 && id < locations_.size()){
+    location_ptr = locations_[id];
+  }
+  return location_ptr;
 }

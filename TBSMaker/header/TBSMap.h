@@ -9,9 +9,11 @@
 #include <string> //I want to use "atoms" instead of strings
 #include <unordered_map> // I want to use sparse_hash instead of unordered_map  
 
+
+enum TBSLocationType{ _UNPASSABLE, _WATER, _GROUND };
+
 // @brief Contains all the info for a location of the game (all this info will be const, and will not change throughout the game
 class TBSLocation{
-  enum TBSLocationType{ _UNPASSABLE, _WATER, _GROUND };
   // Complete name of the location
   // implement atoms_ as OCTET does, and use an atom to hold the name of the location
   // TEMPORARY using string on the meantime
@@ -22,20 +24,35 @@ class TBSLocation{
   std::string short_name_;
 
   // Hash table of connected locations
-  std::unordered_map < std::string, std::shared_ptr< TBSLocation > > links_;
+  std::unordered_map< std::string, std::shared_ptr<TBSLocation> > links_;
 
   // Type of the location
   TBSLocationType type_;
 
 public:
+  // @brief Constructor with initialization of names and type
+  TBSLocation(std::string short_name, std::string long_name, TBSLocationType type) :
+    short_name_(short_name), long_name_(long_name), type_(type) {}
 
-  TBSLocation();
+  // @brief Set the short name 
+  // TEMPORARY TO BE REPLACED WITH ATOMS
+  void set_short_name(std::string short_name){
+    short_name_ = short_name;
+  }
 
+  // @brief Set the long name 
+  // TEMPORARY TO BE REPLACED WITH ATOMS
+  void set_long_name(std::string long_name){
+    long_name_ = long_name;
+  }
+
+  // @brief Gets the short name
   // TEMPORARY using strings until I have atoms into functioning
   std::string get_short_name() {
     return short_name_;
   }
 
+  // @brief Gets the Long name
   // TEMPORARY using strings until I have atoms into functioning
   std::string get_long_name() {
     return long_name_;
@@ -61,7 +78,7 @@ public:
 // @brief Contains all the info for a map of the game
 class TBSMap{
   // Array with all the locations, to keep them packed together.
-  std::vector < std::shared_ptr< TBSLocation > > locations_;
+  std::vector< std::shared_ptr<TBSLocation> > locations_;
 
   // Hash table with pointers to each of the locations (by name), to keep an inmediate access to them.
   // here I will use a better container than those offered by the stl
@@ -73,22 +90,30 @@ class TBSMap{
   // TEMPORARY still using text based version, so no image needed
   // image variable
 
-  
 public:
-
-  TBSMap();
+  // @brief Constructor of TBSMap 
+  TBSMap() {}
 
   // @brief This function reserves the number of locations we are going to use
-  void InitNumLocations(int num_locations){
-    locations_.reserve(num_locations);
+  void InitNumLocations(int num_locations);
+
+  // @brief This lets insert a new location to the map
+  void InsertLocation(std::shared_ptr<TBSLocation> new_location);
+
+  int GetLocationId(std::string name){
+    return location_ids_[name];
   }
 
   // @brief This functions get a pointer to a location from the short name
   // @param location_name String with the abreviation of the location
   // @return If the location exist, will return a pointer to the location with location_name as name
   //         if it doesn´t exist will return nullptr
-  std::shared_ptr < TBSLocation > get_location(std::string location_name);
+  std::shared_ptr<TBSLocation> GetLocation(std::string location_name);
 
-
+  // @brief This functions get a pointer to a location from the short name
+  // @param id Id of the location that we want to obtain
+  // @return If the location exist, will return a pointer to the location with location_name as name
+  //         if it doesn´t exist will return nullptr
+  std::shared_ptr<TBSLocation> GetLocation(int id);
 
 };
