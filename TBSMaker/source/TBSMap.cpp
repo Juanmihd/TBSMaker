@@ -21,10 +21,10 @@ std::string TBSLocation::ToString(){
   {
     long_string.append(") Type: Ground \nConnected to : ");
   }
-  for (auto link : links_){
-    long_string.append(link.second->get_long_name());
+  for (auto path : paths_){
+    long_string.append(path.second->get_long_name());
     long_string.append(" (");
-    long_string.append(link.first);
+    long_string.append(path.first);
     long_string.append("), ");
   }
 }

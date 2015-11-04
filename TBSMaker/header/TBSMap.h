@@ -24,7 +24,8 @@ class TBSLocation{
   std::string short_name_;
 
   // Hash table of connected locations
-  std::unordered_map< std::string, std::shared_ptr<TBSLocation> > links_;
+  // TO DO - Does this really need to be like this?? Couldnt it be just a dictionary?
+  std::unordered_map< std::string, std::shared_ptr<TBSLocation> > paths_;
 
   // Type of the location
   TBSLocationType type_;
@@ -73,6 +74,9 @@ public:
   // @brief This function gets all the info of the TBSLocation and return it as a string
   // @return A String with all the info of the TBSLocation
   std::string ToString();
+
+  // @brief This function will add a new path to the given shortened location
+  void InsertPathTo(std::string name);
 };
 
 // @brief Contains all the info for a map of the game
@@ -115,5 +119,11 @@ public:
   // @return If the location exist, will return a pointer to the location with location_name as name
   //         if it doesn´t exist will return nullptr
   std::shared_ptr<TBSLocation> GetLocation(int id);
+
+  // @brief Function to Load the Map - currently empty TO DO
+  void LoadMap(/*some resource*/){}
+
+  // @brief Function to Save the Map - currently empty TO DO
+  void SaveMap(/*some resource*/){}
 
 };
