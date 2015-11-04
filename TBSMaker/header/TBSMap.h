@@ -26,6 +26,36 @@ class TBSLocation{
 
   // Type of the location
   TBSLocationType type_;
+
+public:
+
+  TBSLocation();
+
+  // TEMPORARY using strings until I have atoms into functioning
+  std::string get_short_name() {
+    return short_name_;
+  }
+
+  // TEMPORARY using strings until I have atoms into functioning
+  std::string get_long_name() {
+    return long_name_;
+  }
+
+  // @brief Check if the location is water
+  // @return True if is water, false if it is not water
+  bool is_water(){
+    return type_ == _WATER;
+  }
+
+  // @brief Check if the location is ground
+  // @return True if is ground, false if it is not ground
+  bool is_ground(){
+    return type_ == _GROUND;
+  }
+
+  // @brief This function gets all the info of the TBSLocation and return it as a string
+  // @return A String with all the info of the TBSLocation
+  std::string ToString();
 };
 
 // @brief Contains all the info for a map of the game
@@ -47,7 +77,6 @@ class TBSMap{
 public:
 
   TBSMap();
-
 
   // @brief This function reserves the number of locations we are going to use
   void InitNumLocations(int num_locations){
