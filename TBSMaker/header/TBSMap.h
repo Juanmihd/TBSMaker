@@ -12,7 +12,7 @@
 
 enum TBSLocationType{ _UNPASSABLE, _WATER, _GROUND };
 
-// @brief Contains all the info for a location of the game (all this info will be const, and will not change throughout the game
+// @brief Contains all the info for a location of the game (all this info will be const, and will not change throughout the game)
 class TBSLocation{
   // Complete name of the location
   // implement atoms_ as OCTET does, and use an atom to hold the name of the location
@@ -29,6 +29,15 @@ class TBSLocation{
 
   // Type of the location
   TBSLocationType type_;
+
+  // This is the initial ownership of the location 
+  int init_ownership_id_;
+
+  // Position of X to place the "node" of the graph
+  float x;
+
+  // Position of Y to place the "node" of the graph
+  float y;
 
 public:
   // @brief Constructor with initialization of names and type
@@ -49,25 +58,25 @@ public:
 
   // @brief Gets the short name
   // TEMPORARY using strings until I have atoms into functioning
-  std::string get_short_name() {
+  inline const std::string & get_short_name() {
     return short_name_;
   }
 
   // @brief Gets the Long name
   // TEMPORARY using strings until I have atoms into functioning
-  std::string get_long_name() {
+  inline const std::string & get_long_name() {
     return long_name_;
   }
 
   // @brief Check if the location is water
   // @return True if is water, false if it is not water
-  bool is_water(){
+  inline bool is_water(){
     return type_ == _WATER;
   }
 
   // @brief Check if the location is ground
   // @return True if is ground, false if it is not ground
-  bool is_ground(){
+  inline bool is_ground(){
     return type_ == _GROUND;
   }
 
@@ -82,9 +91,16 @@ public:
   // @brief Check if the location has a path connecting to another location
   // @param name The string of the shorten name of the location we want to find
   // @return True if it has a path to that location
-  bool HasPathTo(std::string name){
+  inline bool has_path_to(std::string name){
     return paths_.count(name) > 0;
   }
+};
+
+// @brief This will contain the practical information for the game (used to render and take some decisions)
+// such as who owns a location, if there are some special "conditions" on that location, and what units are already there 
+class TBSLocationGame{
+  int ownership_id_;
+  //UNITS OF THE GAME
 };
 
 // @brief Contains all the info for a map of the game
