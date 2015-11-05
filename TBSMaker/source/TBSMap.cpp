@@ -29,6 +29,9 @@ std::string TBSLocation::ToString(){
   }
 }
 
+void TBSLocation::InsertPathTo(std::shared_ptr<TBSLocation> location){
+  paths_[location->get_short_name()] = location;
+}
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////

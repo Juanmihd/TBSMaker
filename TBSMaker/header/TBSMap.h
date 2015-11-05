@@ -76,7 +76,15 @@ public:
   std::string ToString();
 
   // @brief This function will add a new path to the given shortened location
-  void InsertPathTo(std::string name);
+  // @param Location is a pointer to the location we want to insert as a path from this location
+  void InsertPathTo(std::shared_ptr<TBSLocation> location);
+
+  // @brief Check if the location has a path connecting to another location
+  // @param name The string of the shorten name of the location we want to find
+  // @return True if it has a path to that location
+  bool HasPathTo(std::string name){
+    return paths_.count(name) > 0;
+  }
 };
 
 // @brief Contains all the info for a map of the game
