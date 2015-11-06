@@ -27,6 +27,8 @@ std::string TBSLocation::ToString(){
     long_string.append(path.first);
     long_string.append("), ");
   }
+
+  return long_string;
 }
 
 void TBSLocation::InsertPathTo(std::shared_ptr<TBSLocation> location){
@@ -58,7 +60,7 @@ std::shared_ptr < TBSLocation > TBSMap::GetLocation(std::string location_name){
   return location_ptr;
 }
 
-std::shared_ptr < TBSLocation > TBSMap::GetLocation(int id){
+std::shared_ptr < TBSLocation > TBSMap::GetLocation(unsigned int id){
   std::shared_ptr < TBSLocation > location_ptr = nullptr;
   if (id > 0 && id < locations_.size()){
     location_ptr = locations_[id];

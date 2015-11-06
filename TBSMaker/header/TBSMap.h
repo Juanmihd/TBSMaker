@@ -33,16 +33,20 @@ class TBSLocation{
   // This is the initial ownership of the location 
   int init_ownership_id_;
 
-  // Position of X to place the "node" of the graph
-  float x;
+  // Position relative to the map
+  std::pair<float, float> position;
 
-  // Position of Y to place the "node" of the graph
-  float y;
+  // Game related info:
+  // Current owner
+  int ownership_id_;
+
+  // Units un current location
+  ///INFO REGARDING THE UNITS TODO
 
 public:
   // @brief Constructor with initialization of names and type
-  TBSLocation(std::string short_name, std::string long_name, TBSLocationType type) :
-    short_name_(short_name), long_name_(long_name), type_(type) {}
+  TBSLocation(std::string short_name, std::string long_name, TBSLocationType type, float x, float y) :
+    short_name_(short_name), long_name_(long_name), type_(type), position(x,y) {}
 
   // @brief Set the short name 
   // TEMPORARY TO BE REPLACED WITH ATOMS
@@ -54,6 +58,26 @@ public:
   // TEMPORARY TO BE REPLACED WITH ATOMS
   void set_long_name(std::string long_name){
     long_name_ = long_name;
+  }
+
+  // @brief Set the position to two values x, and y
+  // @param x Float with the x relative to the map
+  // @param y Float with the y relative to the map
+  void set_position(float x, float y){
+    position.first = x;
+    position.second = y;
+  }
+
+  // @brief Set the position to a pair of two values x, and y
+  // @param pos Pair of Float with the x and y relative to the map
+  void set_position(std::pair<float,float> &pos){
+    position = pos;
+  }
+
+  // @brief Get the position relative to the map
+  // @return The position of the location relative to the map
+  std::pair<float, float> & get_position(){
+    return position;
   }
 
   // @brief Gets the short name
@@ -96,12 +120,6 @@ public:
   }
 };
 
-// @brief This will contain the practical information for the game (used to render and take some decisions)
-// such as who owns a location, if there are some special "conditions" on that location, and what units are already there 
-class TBSLocationGame{
-  int ownership_id_;
-  //UNITS OF THE GAME
-};
 
 // @brief Contains all the info for a map of the game
 class TBSMap{
@@ -111,7 +129,7 @@ class TBSMap{
   // Hash table with pointers to each of the locations (by name), to keep an inmediate access to them.
   // here I will use a better container than those offered by the stl
   // TEMPORARY using unordered_map (the best that the stl can offer)
-  std::unordered_map< std::string, int > location_ids_;  //This could be simplified by having an atom structure for Locations (matching a STRING with an ID)
+  std::unordered_map< std::string, unsigned int > location_ids_;  //This could be simplified by having an atom structure for Locations (matching a STRING with an ID)
 
   // Image of the map
   // here I will have probably the reference to the image 
@@ -142,7 +160,7 @@ public:
   // @param id Id of the location that we want to obtain
   // @return If the location exist, will return a pointer to the location with location_name as name
   //         if it doesn´t exist will return nullptr
-  std::shared_ptr<TBSLocation> GetLocation(int id);
+  std::shared_ptr<TBSLocation> GetLocation(unsigned int id);
 
   // @brief Function to Load the Map - currently empty TO DO
   void LoadMap(/*some resource*/){}
