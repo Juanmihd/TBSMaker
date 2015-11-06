@@ -10,4 +10,6 @@
 int main(int argc, char** argv)
 {
   printf("TBSMaker is here!");
+
+  TestTBSMap();
 }

@@ -25,7 +25,7 @@ class TBSLocation{
 
   // Hash table of connected locations
   // TO DO - Does this really need to be like this?? Couldnt it be just a dictionary?
-  std::unordered_map< std::string, std::shared_ptr<TBSLocation> > paths_;
+  std::unordered_map< std::string, TBSLocation* > paths_;
 
   // Type of the location
   TBSLocationType type_;
@@ -45,7 +45,7 @@ class TBSLocation{
 
 public:
   // @brief Constructor with initialization of names and type
-  TBSLocation(std::string short_name, std::string long_name, TBSLocationType type, float x, float y) :
+  TBSLocation(std::string short_name, std::string long_name, TBSLocationType type = _GROUND, float x = 0, float y = 0) :
     short_name_(short_name), long_name_(long_name), type_(type), position(x,y) {}
 
   // @brief Set the short name 
@@ -82,14 +82,14 @@ public:
 
   // @brief Gets the short name
   // TEMPORARY using strings until I have atoms into functioning
-  inline const std::string & get_short_name() {
-    return short_name_;
+  inline  char* get_short_name() {
+    return &short_name_[0];
   }
 
   // @brief Gets the Long name
   // TEMPORARY using strings until I have atoms into functioning
-  inline const std::string & get_long_name() {
-    return long_name_;
+  inline char* get_long_name() {
+    return &long_name_[0];
   }
 
   // @brief Check if the location is water
@@ -110,7 +110,7 @@ public:
 
   // @brief This function will add a new path to the given shortened location
   // @param Location is a pointer to the location we want to insert as a path from this location
-  void InsertPathTo(std::shared_ptr<TBSLocation> location);
+  void InsertPathTo(TBSLocation *location, bool recursive = true);
 
   // @brief Check if the location has a path connecting to another location
   // @param name The string of the shorten name of the location we want to find
@@ -144,7 +144,7 @@ public:
   void InitNumLocations(int num_locations);
 
   // @brief This lets insert a new location to the map
-  void InsertLocation(std::shared_ptr<TBSLocation> new_location);
+  void InsertLocation(TBSLocation *new_location);
 
   int GetLocationId(std::string name){
     return location_ids_[name];
@@ -163,9 +163,9 @@ public:
   std::shared_ptr<TBSLocation> GetLocation(unsigned int id);
 
   // @brief Function to Load the Map - currently empty TO DO
-  void LoadMap(/*some resource*/){}
+  void LoadMap(/*some resource*/);
 
   // @brief Function to Save the Map - currently empty TO DO
-  void SaveMap(/*some resource*/){}
+  void SaveMap(/*some resource*/);
 
 };
