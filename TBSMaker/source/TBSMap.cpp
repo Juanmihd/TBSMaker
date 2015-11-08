@@ -102,3 +102,11 @@ std::shared_ptr < TBSLocation > TBSMap::GetLocation(unsigned int id){
   }
   return location_ptr;
 }
+
+void TBSMap::PrintfMapToConsole(){
+  printf("\n\nPrinting map info!");
+  for (auto location : locations_)
+  {
+    printf("\n\n%s", &location->ToString()[0]);
+  }
+}

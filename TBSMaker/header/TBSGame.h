@@ -77,5 +77,7 @@ bool TestTBSMap(std::string input){
     printf("\nPrinting eveything:\n%s", &loc->ToString()[0]);
   }
 
+  GameMap.PrintfMapToConsole();
+
   return true;
 }

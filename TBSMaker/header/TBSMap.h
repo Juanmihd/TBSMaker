@@ -183,6 +183,9 @@ public:
   //         if it doesn´t exist will return nullptr
   std::shared_ptr<TBSLocation> GetLocation(unsigned int id);
 
+  // @brief FOR DEBUG ONLY. This prints the map information on the console with printf
+  void PrintfMapToConsole();
+
   // @brief Function to Load the Map - currently empty TO DO
   void LoadMap(/*some resource*/);
 
