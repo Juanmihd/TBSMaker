@@ -10,21 +10,21 @@ std::string TBSLocation::ToString(){
   long_string.append(short_name_);
   if (type_ == _UNPASSABLE)
   {
-    long_string.append(") Type: Unpassable \nConnected to : ");
+    long_string.append(") Type: Unpassable \nConnected to: ");
   }
   else if (type_ == _WATER)
   {
-    long_string.append(") Type: Water \nConnected to : ");
+    long_string.append(") Type: Water \nConnected to: ");
   }
   else 
   {
-    long_string.append(") Type: Ground \nConnected to : ");
+    long_string.append(") Type: Ground \nConnected to: ");
   }
   for (auto path : paths_){
     long_string.append(path.second->get_long_name());
     long_string.append(" (");
     long_string.append(path.first);
-    long_string.append("), ");
+    long_string.append(") -");
   }
 
   return long_string;
