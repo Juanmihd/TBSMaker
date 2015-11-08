@@ -21,12 +21,16 @@ bool TestTBSMap(std::string input){
   GameMap.InitNumLocations(10);
 
   auto loc1 = new TBSLocation("GRA", "Granada");
+  loc1->set_init_ownership_id(1);
   auto loc2 = new TBSLocation("JAE", "Jaen");
   auto loc3 = new TBSLocation("ALM", "Almeria");
+  loc3->set_init_ownership_id(1);
   auto loc4 = new TBSLocation("MAL", "Malaga");
   auto loc5 = new TBSLocation("HUE", "Huelva");
+  loc5->set_init_ownership_id(2);
   auto loc6 = new TBSLocation("CAD", "Cadiz");
   auto loc7 = new TBSLocation("SEV", "Sevilla");
+  loc7->set_init_ownership_id(2);
   auto loc8 = new TBSLocation("MED", "Mediterraneo", _WATER);
   auto loc9 = new TBSLocation("ATL", "Atlantico", _WATER);
   auto loc10 = new TBSLocation("COR", "Cordoba");
@@ -69,12 +73,12 @@ bool TestTBSMap(std::string input){
   auto loc = GameMap.GetLocation(input);
   if (loc == nullptr)
   {
-    printf("ERROR! I wasn´t able to find %s.", &input[0]);
+    printf("ERROR! I wasn´t able to find %s.\n\n", &input[0]);
   }
   else{
     printf("\n%s", loc->get_long_name());
 
-    printf("\nPrinting eveything:\n%s", &loc->ToString()[0]);
+    printf("\nPrinting eveything:\n%s\n\n\n", &loc->ToString()[0]);
   }
 
   GameMap.PrintfMapToConsole();

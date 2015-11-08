@@ -22,21 +22,26 @@ std::string TBSLocation::ToString(){
 
   long_string.append(" (");
   long_string.append(short_name_);
+  if (init_ownership_id_ != 0){
+    long_string.append(") - initial ownership id: (");
+    long_string.append(std::to_string(init_ownership_id_));
+  }
+  long_string.append(") \nType: ");
   if (type_ == _GROUND)
   {
-    long_string.append(") Type: Ground \nConnected to: ");
+    long_string.append("Ground \nConnected to: ");
   }
   else if (type_ == _COAST)
   {
-    long_string.append(") Type: Ground (coast) \nConnected to: ");
+    long_string.append("Ground (coast) \nConnected to: ");
   }
   else if (type_ == _WATER)
   {
-    long_string.append(") Type: Water \nConnected to: ");
+    long_string.append("Water \nConnected to: ");
   }
   else 
   {
-    long_string.append(") Type: Unpassable \nConnected to: ");
+    long_string.append("Unpassable \nConnected to: ");
   }
   for (auto path : paths_){
     long_string.append(path.second->get_long_name());

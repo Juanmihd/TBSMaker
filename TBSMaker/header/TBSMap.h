@@ -32,13 +32,14 @@ class TBSLocation{
   // Type of the location
   TBSLocationType type_;
 
-  // This is the initial ownership of the location 
-  int init_ownership_id_;
-
-  // Position relative to the map
+  // Position relative to the map 
+  //STILL NOT NEEDED
   std::pair<float, float> position;
 
   // Game related info:
+  // This is the initial ownership of the location 
+  int init_ownership_id_;
+
   // Current owner
   int ownership_id_;
 
@@ -47,8 +48,8 @@ class TBSLocation{
 
 public:
   // @brief Constructor with initialization of names and type
-  TBSLocation(std::string short_name, std::string long_name, TBSLocationType type = _GROUND, float x = 0, float y = 0) :
-    short_name_(short_name), long_name_(long_name), type_(type), position(x,y) {}
+  TBSLocation(std::string short_name, std::string long_name, TBSLocationType type = _GROUND, float x = 0, float y = 0, int init_ownership_id = 0) :
+    short_name_(short_name), long_name_(long_name), type_(type), position(x, y), init_ownership_id_(init_ownership_id), ownership_id_(init_ownership_id) {}
 
   // @brief Set the short name 
   // TEMPORARY TO BE REPLACED WITH ATOMS
@@ -76,6 +77,12 @@ public:
     position = pos;
   }
 
+  // @brief Set the initial ownership id
+  // @param init_ownership_id the initial ownership id for this location
+  void set_init_ownership_id(int init_ownership_id){
+    init_ownership_id_ = init_ownership_id;
+  }
+
   // @brief Get the position relative to the map
   // @return The position of the location relative to the map
   std::pair<float, float> & get_position(){
@@ -92,6 +99,11 @@ public:
   // TEMPORARY using strings until I have atoms into functioning
   inline char* get_long_name() {
     return &long_name_[0];
+  }
+
+  // @brief Get the player id of the initial ownership
+  inline int get_init_ownership_id(){
+    return init_ownership_id_;
   }
 
   // @brief Check if the location is water
