@@ -12,7 +12,7 @@
 #include <string> //I want to use "atoms" instead of strings
 #include <unordered_map> // I want to use sparse_hash instead of unordered_map  
 
-enum TBSLocationType{ _UNPASSABLE, _WATER, _GROUND };
+enum TBSLocationType{ _UNPASSABLE, _WATER, _GROUND, _COAST };
 
 // @brief Contains all the info for a location of the game (all this info will be const, and will not change throughout the game)
 class TBSLocation{
@@ -100,10 +100,27 @@ public:
     return type_ == _WATER;
   }
 
-  // @brief Check if the location is ground
+  // @brief Check if the location is ground (coast is ground!)
   // @return True if is ground, false if it is not ground
   inline bool is_ground(){
+    return type_ >= _GROUND;
+  }
+
+  // @brief Check if the location is only ground
+  // @return True if is ground, false if it is not ground
+  inline bool is_only_ground(){
     return type_ == _GROUND;
+  }
+
+  // @brief Check if the location is coast
+  // @return True if is coast, false if it is not coast
+  inline bool is_coast(){
+    return type_ == _COAST;
+  }
+
+  // @brief Set the current location as coast
+  inline void set_as_coast(){
+    type_ = _COAST;
   }
 
   // @brief This function gets all the info of the TBSLocation and return it as a string
@@ -116,6 +133,7 @@ public:
   void InsertPathTo(TBSLocation *location, bool reciprocal = true);
 
   // @brief Check if the location has a path connecting to another location
+  // If the location that we give as parameter is water, we will set the current location as coast
   // @param name The string of the shorten name of the location we want to find
   // @return True if it has a path to that location
   inline bool has_path_to(std::string name){

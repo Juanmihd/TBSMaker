@@ -22,9 +22,13 @@ std::string TBSLocation::ToString(){
 
   long_string.append(" (");
   long_string.append(short_name_);
-  if (type_ == _UNPASSABLE)
+  if (type_ == _GROUND)
   {
-    long_string.append(") Type: Unpassable \nConnected to: ");
+    long_string.append(") Type: Ground \nConnected to: ");
+  }
+  else if (type_ == _COAST)
+  {
+    long_string.append(") Type: Ground (coast) \nConnected to: ");
   }
   else if (type_ == _WATER)
   {
@@ -32,7 +36,7 @@ std::string TBSLocation::ToString(){
   }
   else 
   {
-    long_string.append(") Type: Ground \nConnected to: ");
+    long_string.append(") Type: Unpassable \nConnected to: ");
   }
   for (auto path : paths_){
     long_string.append(path.second->get_long_name());
@@ -46,6 +50,10 @@ std::string TBSLocation::ToString(){
 
 void TBSLocation::InsertPathTo(TBSLocation *location, bool reciprocal){
   paths_[location->get_short_name()] = location;
+  if (location->is_water() && this->is_ground())
+  {
+    this->set_as_coast();
+  }
   if (reciprocal) location->InsertPathTo(this, false);
 }
 

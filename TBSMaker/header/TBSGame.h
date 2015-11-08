@@ -36,7 +36,6 @@ bool TestTBSMap(std::string input){
   loc1->InsertPathTo(loc4);
   loc1->InsertPathTo(loc8);
 
-  loc2->InsertPathTo(loc8);
   loc2->InsertPathTo(loc1);
   loc2->InsertPathTo(loc4);
   loc2->InsertPathTo(loc10);
@@ -55,7 +54,6 @@ bool TestTBSMap(std::string input){
   loc6->InsertPathTo(loc4);
   loc6->InsertPathTo(loc9);
 
-  loc7->InsertPathTo(loc9);
   loc7->InsertPathTo(loc10);
 
   GameMap.InsertLocation(loc1);
