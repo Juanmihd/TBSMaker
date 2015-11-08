@@ -110,7 +110,8 @@ public:
 
   // @brief This function will add a new path to the given shortened location
   // @param Location is a pointer to the location we want to insert as a path from this location
-  void InsertPathTo(TBSLocation *location, bool recursive = true);
+  // @param Reciprocal is a boolean to test if we want to create a reciprocal insertion of the connection (default true)
+  void InsertPathTo(TBSLocation *location, bool reciprocal = true);
 
   // @brief Check if the location has a path connecting to another location
   // @param name The string of the shorten name of the location we want to find

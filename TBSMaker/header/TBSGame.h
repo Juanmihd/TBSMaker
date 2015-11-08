@@ -71,7 +71,7 @@ bool TestTBSMap(){
   printf("\n%s", loc1->get_long_name());
   printf("\n%s", loc1->get_short_name());
 
-  auto loc = GameMap.GetLocation("GRA");
+  auto loc = GameMap.GetLocation("JAE");
   printf("\n%s", loc == nullptr ? "NADA" : loc->get_long_name());
 
   printf("\nPrinting eveything:\n%s", &loc->ToString()[0]);

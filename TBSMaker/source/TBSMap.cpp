@@ -24,15 +24,15 @@ std::string TBSLocation::ToString(){
     long_string.append(path.second->get_long_name());
     long_string.append(" (");
     long_string.append(path.first);
-    long_string.append(") -");
+    long_string.append(") - ");
   }
 
   return long_string;
 }
 
-void TBSLocation::InsertPathTo(TBSLocation *location, bool recursive){
+void TBSLocation::InsertPathTo(TBSLocation *location, bool reciprocal){
   paths_[location->get_short_name()] = location;
-  if (recursive) location->InsertPathTo(this, false);
+  if (reciprocal) location->InsertPathTo(this, false);
 }
 
 
