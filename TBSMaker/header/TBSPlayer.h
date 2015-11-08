@@ -9,4 +9,8 @@
 class TBSUnit{};
 
 // @brief Contains all the info for a player of the game
-class TBSPlayer{};
+class TBSPlayer{
+  // Info of the player such as name, account?
+  
+  // Info for the game, such as an array of units, 
+};

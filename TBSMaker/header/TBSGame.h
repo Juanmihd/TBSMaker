@@ -15,11 +15,13 @@ class TBSGame{};
 
 // Some test functions to be sure that everything is going well!
 
-bool TestTBSMap(std::string input){
+bool TestTBSMap(std::string input = "MEH"){
   TBSMap GameMap;
 
+  //Creating a sample map of Andalucia
   GameMap.InitNumLocations(10);
 
+  //Creating locations
   auto loc1 = new TBSLocation("GRA", "Granada");
   loc1->set_init_ownership_id(1);
   auto loc2 = new TBSLocation("JAE", "Jaen");
@@ -35,6 +37,7 @@ bool TestTBSMap(std::string input){
   auto loc9 = new TBSLocation("ATL", "Atlantico", _WATER);
   auto loc10 = new TBSLocation("COR", "Cordoba");
 
+  //Connecting locations
   loc1->InsertPathTo(loc2);
   loc1->InsertPathTo(loc3);
   loc1->InsertPathTo(loc4);
@@ -60,6 +63,7 @@ bool TestTBSMap(std::string input){
 
   loc7->InsertPathTo(loc10);
 
+  // Inserting the locations to the map
   GameMap.InsertLocation(loc1);
   GameMap.InsertLocation(loc2);
   GameMap.InsertLocation(loc3);
@@ -70,6 +74,7 @@ bool TestTBSMap(std::string input){
   GameMap.InsertLocation(loc8);
   GameMap.InsertLocation(loc9);
 
+  //Test sample of getting a location
   auto loc = GameMap.GetLocation(input);
   if (loc == nullptr)
   {
@@ -81,6 +86,7 @@ bool TestTBSMap(std::string input){
     printf("\nPrinting eveything:\n%s\n\n\n", &loc->ToString()[0]);
   }
 
+  // Printing the whole map
   GameMap.PrintfMapToConsole();
 
   return true;
