@@ -1,5 +1,19 @@
 #include "TBSMap.h"
 
+
+char ToUpper(char &c){
+  if (c >= 'a' && c <= 'z')
+    return c + ('A' - 'a');
+  return c;
+}
+
+void StringToUpper(std::string &s){
+  for (auto& c : s){
+    c = ToUpper(c);
+  }
+}
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // TBSLocation functions
 
@@ -62,7 +76,9 @@ void TBSMap::InsertLocation(TBSLocation *new_location){
 
 std::shared_ptr < TBSLocation > TBSMap::GetLocation(std::string location_name){
   std::shared_ptr < TBSLocation > location_ptr = nullptr; 
-  
+
+  StringToUpper(location_name);
+
   auto location_id = location_ids_.find(location_name);
   
   if (location_id != location_ids_.end()){

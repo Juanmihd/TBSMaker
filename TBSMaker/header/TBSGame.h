@@ -15,13 +15,12 @@ class TBSGame{};
 
 // Some test functions to be sure that everything is going well!
 
-bool TestTBSMap(){
+bool TestTBSMap(std::string input){
   TBSMap GameMap;
 
   GameMap.InitNumLocations(10);
-  
 
-  auto loc1 = new TBSLocation("GRA", "Granada", _GROUND);
+  auto loc1 = new TBSLocation("GRA", "Granada");
   auto loc2 = new TBSLocation("JAE", "Jaen");
   auto loc3 = new TBSLocation("ALM", "Almeria");
   auto loc4 = new TBSLocation("MAL", "Malaga");
@@ -38,6 +37,7 @@ bool TestTBSMap(){
   loc1->InsertPathTo(loc8);
 
   loc2->InsertPathTo(loc8);
+  loc2->InsertPathTo(loc1);
   loc2->InsertPathTo(loc4);
   loc2->InsertPathTo(loc10);
 
@@ -68,13 +68,16 @@ bool TestTBSMap(){
   GameMap.InsertLocation(loc8);
   GameMap.InsertLocation(loc9);
 
-  printf("\n%s", loc1->get_long_name());
-  printf("\n%s", loc1->get_short_name());
+  auto loc = GameMap.GetLocation(input);
+  if (loc == nullptr)
+  {
+    printf("ERROR! I wasn´t able to find %s.", &input[0]);
+  }
+  else{
+    printf("\n%s", loc->get_long_name());
 
-  auto loc = GameMap.GetLocation("JAE");
-  printf("\n%s", loc == nullptr ? "NADA" : loc->get_long_name());
-
-  printf("\nPrinting eveything:\n%s", &loc->ToString()[0]);
+    printf("\nPrinting eveything:\n%s", &loc->ToString()[0]);
+  }
 
   return true;
 }

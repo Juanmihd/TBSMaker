@@ -9,7 +9,11 @@
 
 int main(int argc, char** argv)
 {
-  printf("TBSMaker is here!");
-
-  TestTBSMap();
+  printf("TBSMaker is here!\n\n");
+  if (argc > 1)
+    TestTBSMap(argv[1]);
+  else
+  {
+    printf("Better search for something... GRA, JAE... ");
+  }
 }

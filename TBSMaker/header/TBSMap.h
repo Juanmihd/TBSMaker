@@ -2,13 +2,15 @@
 // 
 // @brief This file contains the structure of a TBSMap and TBSLocation
 // A TBSMap will contain a graph of TBSLocation and an "image" 
+#ifndef _TBSMAP_H_INCLUDE_
+#define _TBSMAP_H_INCLUDE_
+
 #include <vector>
 #include <memory>
 
-//TEMPORARY
+//TEMPORARY?
 #include <string> //I want to use "atoms" instead of strings
 #include <unordered_map> // I want to use sparse_hash instead of unordered_map  
-
 
 enum TBSLocationType{ _UNPASSABLE, _WATER, _GROUND };
 
@@ -170,3 +172,6 @@ public:
   void SaveMap(/*some resource*/);
 
 };
+
+
+#endif
