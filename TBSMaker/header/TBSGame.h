@@ -73,6 +73,7 @@ bool TestTBSMap(std::string input = "MEH"){
   GameMap.InsertLocation(loc7);
   GameMap.InsertLocation(loc8);
   GameMap.InsertLocation(loc9);
+  GameMap.InsertLocation(loc10);
 
   //Test sample of getting a location
   auto loc = GameMap.GetLocation(input);

@@ -5,3 +5,7 @@
 /TBSMaker/.vs/TBSMaker/v14
 /TBSMaker/TBSMaker.VC.db
 /TBSMaker/TBSMaker.VC.VC.opendb
+*.tlog
+*.obj
+*.exe
+/TBSMaker/x64/Debug
