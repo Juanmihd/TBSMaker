@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/TBSMaker/.vs/TBSMaker/v14
+/TBSMaker/TBSMaker.VC.db
+/TBSMaker/TBSMaker.VC.VC.opendb
