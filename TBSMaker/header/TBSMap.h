@@ -153,7 +153,6 @@ public:
   }
 };
 
-
 // @brief Contains all the info for a map of the game
 class TBSMap{
   // Array with all the locations, to keep them packed together.

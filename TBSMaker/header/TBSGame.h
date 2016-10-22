@@ -78,7 +78,7 @@ bool TestTBSMap(std::string input = "MEH"){
   auto loc = GameMap.GetLocation(input);
   if (loc == nullptr)
   {
-    printf("ERROR! I wasn´t able to find %s.\n\n", &input[0]);
+    printf("ERROR! I wasn't able to find %s.\n\n", &input[0]);
   }
   else{
     printf("\n%s", loc->get_long_name());

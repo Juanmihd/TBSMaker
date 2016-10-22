@@ -82,7 +82,7 @@ void TBSMap::InsertLocation(TBSLocation *new_location){
   else
   {
     // Insert location
-    location_ids_[new_location->get_short_name()] = locations_.size();
+    location_ids_[new_location->get_short_name()] = static_cast<unsigned int> (locations_.size());
     locations_.push_back(std::shared_ptr<TBSLocation>(new_location));
   }
 }
